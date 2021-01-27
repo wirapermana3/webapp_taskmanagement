@@ -1,0 +1,23 @@
+ <?php
+
+require_once 'koneksicrud.php';
+
+if (isset($_POST['submit'])) {
+  $n_tugas = $_POST['nama_tugas'];
+  $deskripsi = $_POST['deskripsi'];
+  $linkurl = $_POST['linkurl'];
+  $linkdocument = $_POST['linkdocument'];
+
+  // id_produk bernilai '' karena kita set auto increment
+  $q = $conn->query("INSERT INTO daftar_tugas_paw VALUES ('', '$n_tugas', '$deskripsi', '$linkurl', '$linkdocument')");
+
+  if ($q) {
+    // pesan jika data tersimpan
+    echo "<script>alert('Data Tugas berhasil ditambahkan'); window.location.href='daftar_tugas_paw.php'</script>";
+  } else {
+    // pesan jika data gagal disimpan
+    echo "<script>alert('Data Tugas gagal ditambahkan'); window.location.href='daftar_tugas_paw.php'</script>";
+  }
+} else {
+  header('Location: daftar_tugas_paw.php');
+}
